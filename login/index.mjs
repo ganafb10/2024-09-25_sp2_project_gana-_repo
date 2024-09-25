@@ -20,16 +20,16 @@ document.querySelector('#loginForm').addEventListener('submit', async (e) => {
         });
 
         const data = await response.json();
-        console.log('Parsed API response:', data);  // For debugging purposes
+        console.log('Parsed API response:', data);  
 
         if (response.ok) {
             if (data.accessToken) {
-                // Store the access token and username in localStorage
-                localStorage.setItem('token', data.accessToken);  // Store the access token
-                localStorage.setItem('username', data.name);  // Store the username
+                
+                localStorage.setItem('token', data.accessToken);  
+                localStorage.setItem('username', data.name);  
                 
                 alert("Login successful!");
-                window.location.href = "../dashboard/index.html";  // Redirect to the dashboard
+                window.location.href = "../dashboard/index.html";  
             } else {
                 console.error("Access token not found in the response:", data);
                 alert("Login successful, but no access token received.");

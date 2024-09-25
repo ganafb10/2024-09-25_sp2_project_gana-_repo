@@ -3,9 +3,9 @@ const Listings_URL = `${BASE_URL}/auction/listings?_seller=`;
 const Single_Profile_URL = `${BASE_URL}/auction/profiles/`;
 const Delete_Listing_URL = `${BASE_URL}/auction/listings/`;
 
-// Fetch the token and username from localStorage after login
-const token = localStorage.getItem('accessToken');  // Updated to 'accessToken' as per the corrected login version
-const username = localStorage.getItem('username');  // Username saved from login
+
+const token = localStorage.getItem('accessToken');  
+const username = localStorage.getItem('username');  
 
 // DOM Elements
 const userName = document.getElementById('userName');
@@ -15,7 +15,7 @@ const userAvatar = document.getElementById('userAvatar');
 const listingsContainer = document.getElementById('listingsContainer');
 const messageContainer = document.getElementById('messageContainer');
 
-// Fetch user profile data
+
 async function fetchUserProfile() {
     try {
         const response = await fetch(`${Single_Profile_URL}${username}`, {
@@ -27,14 +27,14 @@ async function fetchUserProfile() {
         if (!response.ok) throw new Error('Failed to fetch profile data');
 
         const userProfile = await response.json();
-console.log("user")
-        // Populate user info on the page
+
+        
         userName.textContent = userProfile.name;
         userEmail.textContent = userProfile.email;
         userCredits.textContent = `Credits: ${userProfile.credits}`;
         userAvatar.src = userProfile.avatar || 'https://via.placeholder.com/150';
 
-        // Fetch user listings after profile data is loaded
+        
         fetchUserListings();
     } catch (error) {
         messageContainer.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
@@ -42,7 +42,7 @@ console.log("user")
     }
 }
 
-// Fetch user listings (items created by the logged-in user)
+
 async function fetchUserListings() {
     try {
         const response = await fetch(`${Listings_URL}${username}`, {
@@ -60,15 +60,15 @@ async function fetchUserListings() {
             return;
         }
 
-        // Clear existing listings
+        
         listingsContainer.innerHTML = "";
 
-        // Display each listing in a card format
+        
         listings.forEach(listing => {
             const listingCard = document.createElement('div');
             listingCard.classList.add('col-md-4', 'mb-4');
 
-            // Listing card HTML
+            
             listingCard.innerHTML = `
                 <div class="card h-100">
                     <img src="${listing.media[0] || 'https://via.placeholder.com/300x200'}" class="card-img-top" alt="${listing.title}">
@@ -92,7 +92,7 @@ async function fetchUserListings() {
     }
 }
 
-// Delete a listing
+
 async function deleteListing(listingId) {
     try {
         const response = await fetch(`${Delete_Listing_URL}${listingId}`, {
@@ -104,7 +104,7 @@ async function deleteListing(listingId) {
 
         if (!response.ok) throw new Error('Failed to delete listing');
 
-        // Fetch listings again after a successful delete
+        
         fetchUserListings();
     } catch (error) {
         messageContainer.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
@@ -112,10 +112,10 @@ async function deleteListing(listingId) {
     }
 }
 
-// Fetch user profile and listings on page load
+
 if (token && username) {
-    fetchUserProfile();  // Fetch user profile and listings if authenticated
+    fetchUserProfile();  
 } else {
     messageContainer.innerHTML = `<div class="alert alert-danger">You must be logged in to view this page.</div>`;
-    window.location.href = '../login/index.html';  // Redirect to login if not authenticated
+    window.location.href = '../login/index.html';  
 }
