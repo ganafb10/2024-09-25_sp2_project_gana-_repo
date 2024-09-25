@@ -27,7 +27,7 @@ async function fetchUserProfile() {
         if (!response.ok) throw new Error('Failed to fetch profile data');
 
         const userProfile = await response.json();
-
+console.log("user")
         // Populate user info on the page
         userName.textContent = userProfile.name;
         userEmail.textContent = userProfile.email;
