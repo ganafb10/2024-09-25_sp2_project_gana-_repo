@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse Listings - Auction Website</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/style/style.css" />
+    <script type="module" src="../listing/index.mjs"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+     <!-- Header -->
+     <header class="header py-2 text-dark">
+      <nav class="container navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"
+          ><img src="../assets/img/Company Logo.png" alt=""
+        /></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="../login/index.html">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../register/index.html">Register</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+      <h3>Browse Listings</h3>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search listings..."
+          id="searchInput"
+        />
+        <button class="btn btn-outline-secondary" id="searchBtn">Search</button>
+      </div>
+      <div class="row" id="listingsGrid"></div>
+    </main>
+
+     <!-- Footer -->
+     <footer class="header py-5 text-dark text-center py-3">
+      <p>© 2024 Auction Site. All rights reserved.</p>
+    </footer>
+
+  </div>
+  </body>
+</html>
