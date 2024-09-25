@@ -26,7 +26,7 @@ document.querySelector('#loginForm').addEventListener('submit', async (e) => {
             if (data.accessToken) {
                 
                 localStorage.setItem('token', data.accessToken);  
-                localStorage.setItem('username', data.name);  
+                localStorage.setItem('user', JSON.stringify(data)); 
                 
                 alert("Login successful!");
                 window.location.href = "../dashboard/index.html";  

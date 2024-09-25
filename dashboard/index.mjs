@@ -4,8 +4,8 @@ const Single_Profile_URL = `${BASE_URL}/auction/profiles/`;
 const Delete_Listing_URL = `${BASE_URL}/auction/listings/`;
 
 
-const token = localStorage.getItem('accessToken');  
-const username = localStorage.getItem('username');  
+const token = localStorage.getItem('token');  // Updated to 'accessToken' as per the corrected login version
+const username = JSON.parse(localStorage.getItem('user'))?.name; 
 
 // DOM Elements
 const userName = document.getElementById('userName');
@@ -74,8 +74,8 @@ async function fetchUserListings() {
                     <img src="${listing.media[0] || 'https://via.placeholder.com/300x200'}" class="card-img-top" alt="${listing.title}">
                     <div class="card-body">
                         <h5 class="card-title">${listing.title}</h5>
-                        <p class="card-text">${listing.description.substring(0, 100)}...</p>
-                        <p class="card-text">Current Bid: ${listing.bids.length > 0 ? listing.bids[listing.bids.length - 1].amount : 'No Bids'}</p>
+                         <p class="card-text">${listing.description}...</p>
+                        <p class="card-text">Current Bid: ${listing?._count.bids > 0 ? listing._count.bids : 'No Bids'}</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <a href="listingDetail.html?id=${listing.id}" class="btn btn-primary btn-sm">View</a>
